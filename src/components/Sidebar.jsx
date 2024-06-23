@@ -1,6 +1,6 @@
 import "./Sidebar.css"
 
-function Sidebar({ onAddNote, notes }) {
+function Sidebar({ onAddNote, onDeleteNote ,notes }) {
   return (
     <div className="app-sidebar">
       <div className="app-sidebar-header">
@@ -12,7 +12,7 @@ function Sidebar({ onAddNote, notes }) {
           <div className="app-sidebar-note" key={note.id}>
             <div className="sidebar-note-title">
               <strong>{ note.title }</strong>
-              <button>削除</button>
+              <button onClick={() => onDeleteNote(note.id)}>削除</button>
             </div>
             <p>{ note.content }</p>
             <small>{ new Date(note.modDate).toLocaleDateString("ja-JP", {
