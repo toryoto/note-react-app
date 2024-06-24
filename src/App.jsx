@@ -30,6 +30,11 @@ function App() {
     });
   };
 
+  // アクティブなノート（選択されたノート）のオブジェクトを取得するメソッド
+  const getActiveNoteObj = () => {
+    return notes.find((note) => note.id === activeNote);
+  };
+
   return (
     <div className="App">
       <Sidebar
@@ -39,7 +44,7 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main />
+      <Main activeNote={getActiveNoteObj()} />
     </div>
   )
 }
