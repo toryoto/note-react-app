@@ -35,6 +35,20 @@ function App() {
     return notes.find((note) => note.id === activeNote);
   };
 
+  // 修正された新しいノートを含む配列を返す
+  // Sidebarで修正後のノートを表示するためのメソッド
+  const onUpdateNote = (updateNote) => {
+    const updatedNotesArray = notes.map((note) => {
+      if (note.id === updateNote.id) {
+        return updateNote;
+      } else {
+        return note;
+      }
+    });
+
+    setNotes(updatedNotesArray);
+  };
+
   return (
     <div className="App">
       <Sidebar
@@ -44,7 +58,7 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main activeNote={getActiveNoteObj()} />
+      <Main activeNote={getActiveNoteObj()} onUpdateNote={onUpdateNote} />
     </div>
   )
 }
