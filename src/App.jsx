@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Main from './components/Main'
 import Sidebar from './components/Sidebar'
 import uuid from 'react-uuid'
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(JSON.parse(localStorage.getItem("notes")) || []);
   const [activeNote, setActiveNote] = useState();
+
+  // 第二引数が変更されるたびに発火する
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   const onAddNote = () => {
     console.log("ノートが作られました");
